@@ -1,0 +1,46 @@
+{
+  "name": "AdminAccess",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email address granted admin panel access"
+    },
+    "label": {
+      "type": "string",
+      "description": "Optional label/name for this person"
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
