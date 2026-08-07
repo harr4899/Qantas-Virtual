@@ -1,0 +1,24 @@
+{
+  "name": "PostFlightReport",
+  "type": "object",
+  "properties": {
+    "pilot_email": { "type": "string" },
+    "pilot_name": { "type": "string" },
+    "booking_id": { "type": "string" },
+    "flight_number": { "type": "string" },
+    "origin": { "type": "string" },
+    "destination": { "type": "string" },
+    "aircraft": { "type": "string" },
+    "flight_date": { "type": "string", "format": "date" },
+    "landing_fpm": { "type": "number", "description": "Landing rate in feet per minute (negative = good, e.g. -150)" },
+    "overall_rating": { "type": "number", "description": "Pilot self-rating 1-5" },
+    "flight_feeling": { "type": "string", "enum": ["excellent", "good", "average", "poor"], "default": "good" },
+    "remarks": { "type": "string", "description": "General remarks about the flight" },
+    "turbulence": { "type": "string", "enum": ["none", "light", "moderate", "severe"], "default": "none" },
+    "fuel_remaining_kg": { "type": "number" },
+    "passenger_feedback": { "type": "string" },
+    "tracker_screenshot_url": { "type": "string", "description": "Required screenshot from PF tracker" },
+    "issues_encountered": { "type": "string" }
+  },
+  "required": ["pilot_email", "flight_number", "origin", "destination", "tracker_screenshot_url", "landing_fpm"]
+}

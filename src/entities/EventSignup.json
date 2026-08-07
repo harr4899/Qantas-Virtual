@@ -1,0 +1,13 @@
+{
+  "name": "EventSignup",
+  "type": "object",
+  "properties": {
+    "event_id": { "type": "string" },
+    "name": { "type": "string" },
+    "email": { "type": "string" },
+    "pilot_email": { "type": "string", "description": "Set if registered pilot" },
+    "role": { "type": "string", "enum": ["pilot", "passenger"], "default": "passenger" },
+    "notes": { "type": "string" }
+  },
+  "required": ["event_id", "name", "email"]
+}

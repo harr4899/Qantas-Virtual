@@ -1,0 +1,51 @@
+{
+  "name": "FleetAircraft",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Aircraft name e.g. Boeing 787-9 Dreamliner"
+    },
+    "icao_code": {
+      "type": "string",
+      "description": "ICAO type code e.g. B789"
+    },
+    "registration": {
+      "type": "string",
+      "description": "e.g. VH-ZNA"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Photo of the aircraft"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the aircraft"
+    },
+    "range_nm": {
+      "type": "number",
+      "description": "Max range in nautical miles"
+    },
+    "cruise_speed_kts": {
+      "type": "number",
+      "description": "Cruise speed in knots"
+    },
+    "capacity": {
+      "type": "number",
+      "description": "Passenger capacity"
+    },
+    "engines": {
+      "type": "string",
+      "description": "Engine type e.g. 2x GE GEnx-1B"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": ["name"]
+}

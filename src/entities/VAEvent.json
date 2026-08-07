@@ -1,0 +1,28 @@
+{
+  "name": "VAEvent",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "event_type": {
+      "type": "string",
+      "enum": ["group_flight", "long_haul_challenge", "atc_event", "speed_run", "other"],
+      "default": "group_flight"
+    },
+    "audience": {
+      "type": "string",
+      "enum": ["pilots", "passengers", "all"],
+      "default": "all"
+    },
+    "event_date": { "type": "string", "format": "date" },
+    "event_time": { "type": "string" },
+    "end_date": { "type": "string", "format": "date" },
+    "route_from": { "type": "string" },
+    "route_to": { "type": "string" },
+    "aircraft": { "type": "string" },
+    "max_participants": { "type": "number" },
+    "banner_url": { "type": "string" },
+    "active": { "type": "boolean", "default": true }
+  },
+  "required": ["title", "event_date"]
+}
