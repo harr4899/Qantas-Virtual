@@ -1,0 +1,64 @@
+{
+  "name": "FinalExam",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Exam title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Exam description"
+    },
+    "questions": {
+      "type": "array",
+      "description": "Array of exam questions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_index": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "passing_score": {
+      "type": "number",
+      "description": "Minimum percentage to pass"
+    },
+    "time_limit_minutes": {
+      "type": "number",
+      "description": "Time limit in minutes, 0 for no limit"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

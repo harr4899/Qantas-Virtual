@@ -1,0 +1,80 @@
+{
+  "name": "PublicBooking",
+  "type": "object",
+  "properties": {
+    "passenger_name": {
+      "type": "string"
+    },
+    "passenger_email": {
+      "type": "string"
+    },
+    "route_id": {
+      "type": "string"
+    },
+    "flight_number": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "travel_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "passenger_name",
+    "passenger_email",
+    "route_id",
+    "travel_date"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.passenger_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.passenger_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

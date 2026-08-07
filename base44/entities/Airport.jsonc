@@ -1,0 +1,79 @@
+{
+  "name": "Airport",
+  "type": "object",
+  "properties": {
+    "icao": {
+      "type": "string",
+      "description": "ICAO code e.g. YSSY"
+    },
+    "iata": {
+      "type": "string",
+      "description": "IATA code e.g. SYD"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full airport name e.g. Sydney Kingsford Smith"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country name"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "hub",
+        "destination",
+        "focus_city"
+      ],
+      "default": "destination"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "charts": {
+      "type": "array",
+      "description": "Uploaded airport chart files",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "icao",
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

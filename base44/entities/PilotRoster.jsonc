@@ -1,0 +1,65 @@
+{
+  "name": "PilotRoster",
+  "type": "object",
+  "properties": {
+    "pilot_email": {
+      "type": "string",
+      "description": "Pilot's email"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name override"
+    },
+    "rank_id": {
+      "type": "string",
+      "description": "Assigned rank ID"
+    },
+    "rank_name": {
+      "type": "string",
+      "description": "Cached rank name"
+    },
+    "flights_completed": {
+      "type": "number",
+      "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "discord_id": {
+      "type": "string",
+      "description": "Linked Discord user ID"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "pilot_email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

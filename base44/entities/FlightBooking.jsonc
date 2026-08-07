@@ -1,0 +1,98 @@
+{
+  "name": "FlightBooking",
+  "type": "object",
+  "properties": {
+    "pilot_email": {
+      "type": "string"
+    },
+    "route_id": {
+      "type": "string"
+    },
+    "flight_number": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "aircraft": {
+      "type": "string"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "departure_time": {
+      "type": "string",
+      "description": "Scheduled departure time e.g. 09:30"
+    },
+    "gate": {
+      "type": "string",
+      "description": "Departure gate e.g. A12"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "booked",
+        "completed",
+        "cancelled"
+      ],
+      "default": "booked"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "pilot_email",
+    "route_id",
+    "scheduled_date"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

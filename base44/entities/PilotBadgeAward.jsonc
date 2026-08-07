@@ -1,0 +1,59 @@
+{
+  "name": "PilotBadgeAward",
+  "type": "object",
+  "properties": {
+    "pilot_email": {
+      "type": "string",
+      "description": "Pilot's email"
+    },
+    "badge_id": {
+      "type": "string",
+      "description": "Badge entity ID"
+    },
+    "badge_name": {
+      "type": "string",
+      "description": "Cached badge name"
+    },
+    "awarded_by": {
+      "type": "string",
+      "description": "Admin email who awarded it"
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional award note"
+    }
+  },
+  "required": [
+    "pilot_email",
+    "badge_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

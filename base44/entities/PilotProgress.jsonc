@@ -1,0 +1,77 @@
+{
+  "name": "PilotProgress",
+  "type": "object",
+  "properties": {
+    "pilot_email": {
+      "type": "string",
+      "description": "Pilot's email"
+    },
+    "sector_id": {
+      "type": "string",
+      "description": "Training sector ID"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sector_test",
+        "final_exam"
+      ],
+      "description": "Type of progress record"
+    },
+    "score": {
+      "type": "number",
+      "description": "Score percentage"
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Whether the pilot passed"
+    },
+    "answers": {
+      "type": "array",
+      "description": "Selected answer indices",
+      "items": {
+        "type": "number"
+      }
+    }
+  },
+  "required": [
+    "pilot_email",
+    "type"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "name": "EventSignup",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "pilot_email": {
+      "type": "string",
+      "description": "Set if registered pilot"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "pilot",
+        "passenger"
+      ],
+      "default": "passenger"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "name",
+    "email"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

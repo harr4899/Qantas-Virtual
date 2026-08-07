@@ -1,0 +1,62 @@
+{
+  "name": "PilotBadge",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Badge name e.g. 'Long Haul Veteran'"
+    },
+    "description": {
+      "type": "string",
+      "description": "What this badge is awarded for"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Lucide icon name e.g. Trophy, Star, Zap"
+    },
+    "color": {
+      "type": "string",
+      "description": "Badge color hex e.g. #f59e0b",
+      "default": "#6b21a8"
+    },
+    "criteria_type": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "flights_count",
+        "rank"
+      ],
+      "default": "manual",
+      "description": "How the badge is awarded"
+    },
+    "criteria_value": {
+      "type": "string",
+      "description": "For flights_count: number. For rank: rank name."
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "MapLocation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Location name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description shown in popup"
+    },
+    "x": {
+      "type": "number",
+      "description": "Horizontal position as percentage (0-100) on the custom map image"
+    },
+    "y": {
+      "type": "number",
+      "description": "Vertical position as percentage (0-100) on the custom map image"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "hub",
+        "destination",
+        "waypoint"
+      ],
+      "default": "destination"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "name",
+    "x",
+    "y"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

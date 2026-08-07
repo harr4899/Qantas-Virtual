@@ -1,0 +1,126 @@
+{
+  "name": "LiveFlight",
+  "type": "object",
+  "properties": {
+    "pilot_email": {
+      "type": "string"
+    },
+    "pilot_name": {
+      "type": "string"
+    },
+    "flight_number": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "origin_name": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "destination_name": {
+      "type": "string"
+    },
+    "aircraft": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "preflight",
+        "enroute",
+        "approach",
+        "landed"
+      ],
+      "default": "preflight"
+    },
+    "altitude": {
+      "type": "string",
+      "description": "e.g. FL350"
+    },
+    "speed": {
+      "type": "string",
+      "description": "e.g. 450 kts"
+    },
+    "progress_pct": {
+      "type": "number",
+      "default": 0,
+      "description": "0-100 flight progress"
+    },
+    "departure_time": {
+      "type": "string"
+    },
+    "eta": {
+      "type": "string"
+    },
+    "remarks": {
+      "type": "string"
+    },
+    "booking_id": {
+      "type": "string"
+    },
+    "flight_plan_url": {
+      "type": "string"
+    },
+    "flight_plan_name": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "pilot_email",
+    "flight_number",
+    "origin",
+    "destination"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.pilot_email": "{{user.email}}"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

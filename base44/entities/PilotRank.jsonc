@@ -1,0 +1,51 @@
+{
+  "name": "PilotRank",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Rank name e.g. First Officer"
+    },
+    "min_flights": {
+      "type": "number",
+      "description": "Minimum completed flights to auto-assign this rank",
+      "default": 0
+    },
+    "auto_assign": {
+      "type": "boolean",
+      "description": "Whether to auto-assign based on flight count",
+      "default": false
+    },
+    "badge_color": {
+      "type": "string",
+      "description": "Badge color hex",
+      "default": "#6b21a8"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order (lower = lower rank)",
+      "default": 0
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

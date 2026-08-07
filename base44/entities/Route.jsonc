@@ -1,0 +1,78 @@
+{
+  "name": "Route",
+  "type": "object",
+  "properties": {
+    "flight_number": {
+      "type": "string",
+      "description": "e.g. TG101"
+    },
+    "origin": {
+      "type": "string",
+      "description": "Departure ICAO/IATA code"
+    },
+    "origin_name": {
+      "type": "string",
+      "description": "Full airport name"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Arrival ICAO/IATA code"
+    },
+    "destination_name": {
+      "type": "string",
+      "description": "Full airport name"
+    },
+    "aircraft": {
+      "type": "string",
+      "description": "Aircraft type e.g. B777"
+    },
+    "distance_nm": {
+      "type": "number",
+      "description": "Distance in nautical miles"
+    },
+    "flight_level": {
+      "type": "string",
+      "description": "Cruise flight level e.g. FL350"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or procedures"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "required_rank": {
+      "type": "string",
+      "description": "If set, only pilots with this rank (or higher) can book this route. Leave blank for all ranks."
+    },
+    "require_pilot_booking": {
+      "type": "boolean",
+      "default": true,
+      "description": "When true, passengers can only book this route if a pilot has scheduled a flight on it. When false, passengers can request any date."
+    }
+  },
+  "required": [
+    "flight_number",
+    "origin",
+    "destination"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

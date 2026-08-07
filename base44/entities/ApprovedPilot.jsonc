@@ -1,0 +1,61 @@
+{
+  "name": "ApprovedPilot",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Email address approved for pilot training"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "revoked"
+      ],
+      "default": "active",
+      "description": "Access status"
+    },
+    "training_complete": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether pilot has passed all training and final exam"
+    },
+    "fast_pass": {
+      "type": "boolean",
+      "default": false,
+      "description": "Skip training requirement and go directly to Pilot Portal"
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "SiteSettings",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Setting key identifier"
+    },
+    "value": {
+      "type": "string",
+      "description": "Setting value (JSON stringified for complex values)"
+    }
+  },
+  "required": [
+    "key"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

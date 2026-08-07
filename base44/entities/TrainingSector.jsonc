@@ -1,0 +1,83 @@
+{
+  "name": "TrainingSector",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Sector title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Sector description"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order"
+    },
+    "slides": {
+      "type": "array",
+      "description": "Array of slide objects with title, content, image_url",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "test_questions": {
+      "type": "array",
+      "description": "Array of test questions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_index": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "passing_score": {
+      "type": "number",
+      "description": "Minimum percentage to pass (0-100)"
+    }
+  },
+  "required": [
+    "title",
+    "order"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

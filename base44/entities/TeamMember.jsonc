@@ -1,0 +1,48 @@
+{
+  "name": "TeamMember",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "role": {
+      "type": "string",
+      "description": "Position/role in the VA"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Short biography"
+    },
+    "photo_url": {
+      "type": "string",
+      "description": "Profile photo URL"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Order to display"
+    }
+  },
+  "required": [
+    "name",
+    "role"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
